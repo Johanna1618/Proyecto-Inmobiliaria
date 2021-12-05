@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Solicitud} from './solicitud.model';
 
 @model({settings: {strict: false}})
 export class Estado extends Entity {
@@ -20,6 +21,8 @@ export class Estado extends Entity {
   })
   comentarios?: string;
 
+  @belongsTo(() => Solicitud)
+  solicitudId: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data

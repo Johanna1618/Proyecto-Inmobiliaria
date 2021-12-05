@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
+import {Solicitud} from './solicitud.model';
+import {Rol} from './rol.model';
 
 @model({settings: {strict: false}})
 export class Usuario extends Entity {
@@ -45,6 +47,16 @@ export class Usuario extends Entity {
   })
   password: string;
 
+  @hasMany(() => Solicitud)
+  solicitudes: Solicitud[];
+
+  @hasOne(() => Rol)
+  rol: Rol;
+
+  @property({
+    type: 'string',
+  })
+  rolId?: string;
   // Define well-known properties here
 
   // Indexer property to allow additional data
